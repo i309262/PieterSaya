@@ -36,7 +36,7 @@ public class WoordenSorter
             ketama.add(woorden[i]);
         }
         output += "Aantal woorden: " + woorden.length + "\n";
-        output += "Aantal verschillende woorden: " + ketama.size() + "\n";
+        output += "Aantal verschillende woorden: " + ketama.size();
         return output;
     }
     
