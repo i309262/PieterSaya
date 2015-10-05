@@ -56,6 +56,21 @@ public class WoordenSorterTest
         String result3 = ws.aantal(" ");
         assertEquals("zijn niet gelijk", expResult3, result3);
         
+        
+        for(int i = 0; i < 100; i++) // hier weinig
+        {
+            //timestamp1 begin
+            ws.aantal("hier komen random gegenereerde woorden");
+            //timestamp1 end
+        }
+        
+        for(int i = 0; i < 1000000; i++) //hier veel
+        {
+            //timestamp2 begin
+            ws.aantal("hier komen random unieke gegenereerde woorden");
+            //timestamp2 end
+            //duurd 1000x langer
+        }
     }
 
     /**

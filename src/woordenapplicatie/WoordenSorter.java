@@ -26,29 +26,29 @@ public class WoordenSorter
         return input.split("[\r|\n|\\s|, ]+");
     }
     
-    public String aantal(String input)
+    public String aantal(String input) //n * n 
     {
         String output = "";
         String[] woorden = splitWords(input);
         HashSet<String> ketama = new HashSet<>();
-        for(int i = 0; i < woorden.length; i++)
+        for(int i = 0; i < woorden.length; i++) //n
         {
-            ketama.add(woorden[i]);
+            ketama.add(woorden[i]); //n
         }
         output += "Aantal woorden: " + woorden.length + "\n";
         output += "Aantal verschillende woorden: " + ketama.size();
         return output;
     }
     
-    public String sorteer(String input)
+    public String sorteer(String input) // n* log n
     {
         String output = "";
         String[] woorden = splitWords(input);
         TreeSet<String> treeSetWords = new TreeSet<>(Collections.reverseOrder());
         
-        for(int i = 0; i < woorden.length; i++)
+        for(int i = 0; i < woorden.length; i++) // n
         {
-            treeSetWords.add(woorden[i]);
+            treeSetWords.add(woorden[i]); // log n
         }
         while(treeSetWords.size() > 0)
         {
@@ -63,11 +63,11 @@ public class WoordenSorter
         String[] woorden = splitWords(input);
         TreeMap<String, Integer> tm = new TreeMap<>();
         
-        for(int i = 0; i < woorden.length; i++)
+        for(int i = 0; i < woorden.length; i++) //n
         {
-            if(tm.containsKey(woorden[i]))
+            if(tm.containsKey(woorden[i])) // n * log n
             {
-                tm.put(woorden[i], tm.get(woorden[i]) + 1);
+                tm.put(woorden[i], tm.get(woorden[i]) + 1); //n * log n
             }
             else
             {
@@ -85,6 +85,7 @@ public class WoordenSorter
     public String concordatie(String input)
     {
         TreeMap<String, String> hm = new TreeMap<>();
+        //  TreeMap<String, ArrayList<Integer> hm = new TreeMap<>();
         
         String output = "";
         String[] lines = input.split("\n");
@@ -92,11 +93,11 @@ public class WoordenSorter
         for (int i = 0; i < lines.length; i++)
         {
             String[] words = splitWords(lines[i]);
-            for (int j = 0; j < words.length; j++)
+            for (int j = 0; j < words.length; j++) //n
             {
                 if(!words[j].isEmpty())
                 {
-                    if(hm.containsKey(words[j]))
+                    if(hm.containsKey(words[j])) //n * log n
                     {
                         String[] values = hm.get(words[j]).split(",");
                         boolean found = false;
@@ -109,7 +110,7 @@ public class WoordenSorter
                         }
                         if(!found)
                         {
-                            hm.put(words[j], hm.get(words[j]) + "," + (i + 1));
+                            hm.put(words[j], hm.get(words[j]) + "," + (i + 1)); // n *log n
                         }
                     }
                     else
